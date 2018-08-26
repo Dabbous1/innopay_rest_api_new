@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_181823) do
+ActiveRecord::Schema.define(version: 2018_08_26_182136) do
 
   create_table "receivers", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 2018_08_26_181823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_senders_on_address_id"
+  end
+
+  create_table "shipments", force: :cascade do |t|
+    t.integer "tntcode"
+    t.string "status"
+    t.integer "weight"
+    t.string "content"
+    t.integer "price"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_shipments_on_receiver_id"
+    t.index ["sender_id"], name: "index_shipments_on_sender_id"
   end
 
 end
